@@ -44,7 +44,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $data['title']="Create User";
+        $data['title']="Create new User";
         return view('admin.user.create',$data);
     }
 
