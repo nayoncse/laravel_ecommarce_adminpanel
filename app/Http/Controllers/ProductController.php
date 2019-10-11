@@ -27,7 +27,7 @@ class ProductController extends Controller
         if($request->has('status') && $request->status != null){
             $product = $product->where('status',$request->status);
         }
-        $product = $product->orderBy('id','DESC')->paginate(10);
+        $product = $product->orderBy('id','DESC')->paginate(5);
         $data['products'] = $product;
 
         if (isset($request->status) || $request->search) {
@@ -92,8 +92,6 @@ class ProductController extends Controller
     {
         $data['title'] = 'Product Details';
         $data['product'] = Product::with(['category','brand','product_image'])->findOrFail($id);
-        $data['categories'] = Category::orderBy('name')->pluck('name','id');
-        $data['brands'] = Brand::orderBy('name')->pluck('name','id');
         return view('admin.product.show',$data);
     }
 
